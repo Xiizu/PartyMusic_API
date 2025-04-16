@@ -39,7 +39,7 @@ class UserController extends Controller
         if (!$user) {
             return response()->json(['statut' => 'error', 'message' => 'User not found.'], 404);
         } else {
-            return response()->json(['statut' => 'success', 'message' => 'User successfully retrieved.', 'user' => $user]);
+            return response()->json(['statut' => 'success', 'message' => 'User successfully retrieved.', 'data' => $user]);
         }
     }
 }
