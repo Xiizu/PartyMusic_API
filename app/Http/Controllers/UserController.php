@@ -42,4 +42,26 @@ class UserController extends Controller
             return response()->json(['statut' => 'success', 'message' => 'User successfully retrieved.', 'data' => $user]);
         }
     }
+
+    function createUser(Request $request)
+    {
+        $name = $request->input('name');
+        $email = $request->input('email');
+        $password = hash('sha256', $request->input('password'));
+        if (!$name || !$email || !$password) {
+            return response()->json(['statut' => 'error', 'message' => 'Name, Email and Password are required.'], 400);
+        }
+        $user = User::where('email', $email)->first();
+        if ($user) {
+            return response()->json(['statut' => 'error', 'message' => 'User already exists.'], 409);
+        } else {
+            $newUser = new User();
+            $newUser->name = $name;
+            $newUser->email = $email;
+            $newUser->password = $password;
+            $newUser->token = hash('sha256', $email . time() . $password);
+            $newUser->save();
+            return response()->json(['statut' => 'success', 'message' => 'User successfully created.', 'data' => $newUser], 201);
+        }
+    }
 }
