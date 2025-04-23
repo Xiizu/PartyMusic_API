@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoomController;
 
 Route::prefix('dev')->middleware('api')->middleware('auth.token')->group(function () {
     Route::post('/ping', [TestController::class, 'ping']);
@@ -14,4 +15,11 @@ Route::prefix('user')->middleware('api')->middleware('auth.token')->group(functi
     Route::post('/delete', [UserController::class, 'deleteUser']); */
     Route::post('/login', [UserController::class, 'loginUser']);
     Route::post('/get', [UserController::class, 'getUser']);
+});
+
+Route::prefix('room')->middleware('api')->middleware('auth.token')->group(function () {
+    Route::post('/create', [RoomController::class, 'createRoom']);
+   /*  Route::post('/update', [RoomController::class, 'updateRoom']);
+    Route::post('/delete', [RoomController::class, 'deleteRoom']);*/
+    Route::post('/get', [RoomController::class, 'getRoom']); 
 });

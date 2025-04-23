@@ -13,6 +13,12 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        User::factory()->create([
+            'name' => 'Mr. Tester',
+            'email' => 'test@test.com',
+            'password' => hash('sha256', 'Test123!'),
+            'token' => 'test_token',
+        ]);
         User::factory()->count(5)->create();
     }
 }
