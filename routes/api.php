@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\MusicController;
 
 Route::prefix('dev')->middleware('api')->middleware('auth.token')->group(function () {
     Route::post('/ping', [TestController::class, 'ping']);
@@ -22,4 +23,13 @@ Route::prefix('room')->middleware('api')->middleware('auth.token')->group(functi
    /*  Route::post('/update', [RoomController::class, 'updateRoom']);
     Route::post('/delete', [RoomController::class, 'deleteRoom']);*/
     Route::post('/get', [RoomController::class, 'getRoom']); 
+    Route::post('/join', [RoomController::class, 'joinRoom']);
+});
+
+Route::prefix('music')->middleware('api')->middleware('auth.token')->group(function () {
+    /* Route::post('/create', [MusicController::class, 'createMusic']); */
+    /* Route::post('/update', [MusicController::class, 'updateMusic']);
+    Route::post('/delete', [MusicController::class, 'deleteMusic']); */
+    Route::post('/get', [MusicController::class, 'getMusic']);
+    Route::post('/all', [MusicController::class, 'getAllMusicForUser']);
 });

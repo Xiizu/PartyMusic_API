@@ -19,6 +19,6 @@ class RoomSeeder extends Seeder
             'host_id' => 1,
             'code' => 'ROOM0001',
         ]);
-        Room::class::factory(1)->create();
+        Room::class::factory(50)->create();
     }
 }

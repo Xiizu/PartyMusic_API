@@ -19,6 +19,6 @@ class UserSeeder extends Seeder
             'password' => hash('sha256', 'Test123!'),
             'token' => 'test_token',
         ]);
-        User::factory()->count(5)->create();
+        User::factory()->count(100)->create();
     }
 }
