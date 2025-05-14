@@ -58,5 +58,32 @@ class MusicController extends Controller
         }
         return response()->json(['statut' => 'success', 'message' => 'Musics retrieved successfully', 'data' => $musics], 200);
     }
+
+    /**
+     * Create a new music.
+     */
+    public function createMusic(Request $request)
+    {
+        $request->validate([
+            'room_id' => 'required|exists:rooms,id',
+            'user_id' => 'required|exists:users,id',
+            'title' => 'required|string|max:255',
+            'artist' => 'required|string|max:255',
+            'link' => 'required|url',
+        ]);
+
+        $music = new Music();
+        $music->room_id = $request->input('room_id');
+        $music->user_id = $request->input('user_id');
+        $music->title = $request->input('title');
+        $music->artist = $request->input('artist');
+        $music->link = $request->input('link');
+        $music->duration = $request->input('duration', 0);
+        $music->likes = $request->input('likes', 0);
+        $music->playable = $request->input('playable', 1);
+        $music->save();
+
+        return response()->json(['statut' => 'success', 'message' => 'Music created successfully', 'data' => $music], 201);
+    }
 }
 
