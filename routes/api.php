@@ -33,4 +33,5 @@ Route::prefix('music')->middleware('api')->middleware('auth.token')->group(funct
     Route::post('/create', [MusicController::class, 'createMusic']);
     Route::post('/get', [MusicController::class, 'getMusic']);
     Route::post('/all', [MusicController::class, 'getAllMusicForUser']);
+    /* Route::post('/getAudio', [MusicController::class, 'extractAudioUrl']); */
 });
