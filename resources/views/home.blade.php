@@ -57,7 +57,12 @@
 </head>
 <body>
     <div class="stars-container"></div>
-    <h1>Party Music API</h1>
+    
+    <img src="{{ asset('/images/PartyMusic_logo_big.png') }}" alt="Logo" style="position: absolute; left: 50%; top: 50%; width: 60vw; max-width: 700px; min-width: 300px; opacity: 0.8; transform: translate(-50%, -50%); z-index: 0; pointer-events: none; filter: brightness(0) invert(1) drop-shadow(0 0 0 black) drop-shadow(0 0 3px black) drop-shadow(0 0 6px black);">
+
+    <div style="position: absolute; left: 50%; top: 35%; transform: translate(-50%, -50%); z-index: 1; width: 100%;">
+        <h1 style="color: rgb(152, 248, 255); text-shadow: 0 0 10px #000, 0 0 20px #00eaff, 2px 2px 10px #000;">Party Music API</h1>
+    </div>
 
     <script>
         const starsContainer = document.querySelector('.stars-container');

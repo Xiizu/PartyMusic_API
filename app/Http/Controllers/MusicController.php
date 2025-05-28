@@ -69,7 +69,7 @@ class MusicController extends Controller
             'user_id' => 'required|exists:users,id',
             'title' => 'required|string|max:255',
             'artist' => 'required|string|max:255',
-            'link' => 'required|url',
+            'link' => 'required|string',
         ]);
 
         $music = new Music();
@@ -85,5 +85,22 @@ class MusicController extends Controller
 
         return response()->json(['statut' => 'success', 'message' => 'Music created successfully', 'data' => $music], 201);
     }
+
+    /**
+     * Update a music.
+     */
+   /*  public function extractAudioUrl(Request $request)
+    {
+        $videoUrl = $request->input('url');
+        if (!$videoUrl) {
+            return response()->json(['statut' => 'error', 'message' => 'Video URL is required'], 400);
+        }
+        $command = escapeshellcmd("yt-dlp -f bestaudio -g https://youtu.be/" . escapeshellarg($videoUrl));
+        $audioUrl = shell_exec($command);
+        if ($audioUrl === null) {
+            return response()->json(['statut' => 'error', 'message' => 'Failed to extract audio URL'], 500);
+        }
+        return response()->json(['statut' => 'success', 'message' => 'Audio URL extracted successfully for https://youtu.be/' . $videoUrl, 'data' => $audioUrl], 200);
+    } */
 }
 
