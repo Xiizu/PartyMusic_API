@@ -1,0 +1,14 @@
+name: PartyMusic_API
+deployment:
+  tasks:
+    - export DEPLOY_PATH=/home/solo7514/partymusic.souakri.fr
+    - /bin/mkdir -p $DEPLOY_PATH
+    - /bin/rsync -a --exclude='.git' --exclude='node_modules' ./ $DEPLOY_PATH
+    - cd $DEPLOY_PATH
+    - php artisan config:cache
+    - php artisan route:cache
+    - php artisan view:cache
+    - php artisan cache:clear
+    - php artisan config:cache
+    - php artisan route:cache
+    - php artisan view:cache
