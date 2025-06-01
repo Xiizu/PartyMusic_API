@@ -16,6 +16,8 @@ Route::prefix('user')->middleware('api')->middleware('auth.token')->group(functi
     Route::post('/delete', [UserController::class, 'deleteUser']); */
     Route::post('/login', [UserController::class, 'loginUser']);
     Route::post('/get', [UserController::class, 'getUser']);
+    Route::post('/changeUsername', [UserController::class, 'changeUsername']);
+    Route::post('/changePassword', [UserController::class, 'changePassword']);
 });
 
 Route::prefix('room')->middleware('api')->middleware('auth.token')->group(function () {
