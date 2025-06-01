@@ -64,4 +64,45 @@ class UserController extends Controller
             return response()->json(['statut' => 'success', 'message' => 'User successfully created.', 'data' => $newUser], 201);
         }
     }
+
+    function changeUsername(Request $request)
+    {
+        $id = $request->input('id');
+        $newName = $request->input('name');
+        if (!$id || !$newName) {
+            return response()->json(['statut' => 'error', 'message' => 'User ID and new name are required.'], 400);
+        }
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['statut' => 'error', 'message' => 'User not found.'], 404);
+        } else {
+            $user->name = $newName;
+            $user->save();
+            return response()->json(['statut' => 'success', 'message' => 'Username successfully changed.', 'data' => $user]);
+        }
+    }
+
+    function changePassword(Request $request)
+    {
+        $id = $request->input('id');
+        $oldPAssword = hash('sha256', $request->input('oldPassword'));
+        $newPassword = hash('sha256', $request->input('password'));
+        if (!$id || !$newPassword || !$oldPAssword) {
+            return response()->json(['statut' => 'error', 'message' => 'User ID, old password and new password are required.'], 400);
+        }
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['statut' => 'error', 'message' => 'User not found.'], 404);
+        } else {
+            if ($oldPAssword != $user->password) {
+                return response()->json(['statut' => 'error', 'message' => 'Old password is incorrect.'], 403);
+            } else if ($newPassword == $user->password) {
+                return response()->json(['statut' => 'error', 'message' => 'New password cannot be the same as the old password.'], 417);
+            } else {
+                $user->password = $newPassword;
+                $user->save();
+                return response()->json(['statut' => 'success', 'message' => 'Password successfully changed.', 'data' => $user]);
+            }
+        }
+    }
 }
