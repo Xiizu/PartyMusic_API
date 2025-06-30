@@ -30,8 +30,8 @@ Route::prefix('room')->middleware('api')->middleware('auth.token')->group(functi
 
 Route::prefix('music')->middleware('api')->middleware('auth.token')->group(function () {
     /* Route::post('/create', [MusicController::class, 'createMusic']); */
-    /* Route::post('/update', [MusicController::class, 'updateMusic']);
-    Route::post('/delete', [MusicController::class, 'deleteMusic']); */
+    /* Route::post('/update', [MusicController::class, 'updateMusic']);*/
+    Route::post('/delete', [MusicController::class, 'deleteMusic']);
     Route::post('/create', [MusicController::class, 'createMusic']);
     Route::post('/get', [MusicController::class, 'getMusic']);
     Route::post('/all', [MusicController::class, 'getAllMusicForUser']);
