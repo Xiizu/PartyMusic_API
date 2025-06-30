@@ -62,6 +62,13 @@
 
     <div style="position: absolute; left: 50%; top: 35%; transform: translate(-50%, -50%); z-index: 1; width: 100%;">
         <h1 style="color: rgb(152, 248, 255); text-shadow: 0 0 10px #000, 0 0 20px #00eaff, 2px 2px 10px #000;">Party Music API</h1>
+        <h2 style="color: rgb(152, 248, 255); text-shadow: 0 0 10px #000, 0 0 20px #00eaff, 2px 2px 10px #000;">
+            <a href="{{ asset('https://github.com/Xiizu/PartyMusic_App/raw/53d133902072496b522fa85ac0d5066177bff3ff/app-debug.apk') }}" 
+               style="color: #00eaff; text-decoration: underline; font-size: 1.5rem; background: rgba(0,0,0,0.3); padding: 0.5em 1em; border-radius: 8px; box-shadow: 0 0 10px #00eaff;"
+               download>
+            Télécharger l'application
+            </a>
+        </h2>
     </div>
 
     <script>
