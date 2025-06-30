@@ -87,6 +87,23 @@ class MusicController extends Controller
     }
 
     /**
+     * Delete a music.
+     */
+    public function deleteMusic(Request $request)
+    {
+        $id = $request->input('id');
+        if (!$id) {
+            return response()->json(['statut' => 'error', 'message' => 'Music ID is required'], 400);
+        }
+        $music = Music::find($id);
+        if (!$music) {
+            return response()->json(['statut' => 'error', 'message' => 'Music not found'], 404);
+        }
+        $music->delete();
+        return response()->json(['statut' => 'success', 'message' => 'Music deleted successfully'], 200);
+    }
+
+    /**
      * Update a music.
      */
    /*  public function extractAudioUrl(Request $request)
