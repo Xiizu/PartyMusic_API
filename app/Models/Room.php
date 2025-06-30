@@ -20,4 +20,9 @@ class Room extends Model
         'description',
         'code',
     ];
+
+    public function playlists()
+    {
+        return $this->hasMany(Playlist::class);
+    }
 }

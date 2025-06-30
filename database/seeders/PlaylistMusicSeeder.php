@@ -4,19 +4,16 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use  App\Models\Music;
 
-class MusicSeeder extends Seeder
+class PlaylistMusicSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Music::factory()->count(10)->create([
-            'room_id' => 1,
-        ]);
-        Music::factory()->count(300)->create();
-
+        \App\Models\PlaylistMusic::factory()
+            ->count(10)
+            ->create();
     }
 }

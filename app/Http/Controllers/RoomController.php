@@ -60,6 +60,12 @@ class RoomController extends Controller
             } else {
                 $roomsToReturn = $rooms->merge($joinedRooms);
             }
+            
+            
+            $roomsToReturn->each(function ($room) {
+                $room->playlists = $room->playlists()->get();
+            });
+
 
             // Add host_name attribute to each room
             $roomsToReturn->each(function ($room) {

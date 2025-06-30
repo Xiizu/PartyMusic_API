@@ -26,6 +26,12 @@ class DatabaseSeeder extends Seeder
         $this->call([
             JoinSeeder::class,
         ]);
+        $this->call([
+            PlaylistSeeder::class,
+        ]);
+        $this->call([
+            PlaylistMusicSeeder::class,
+        ]);
         
     }
 }

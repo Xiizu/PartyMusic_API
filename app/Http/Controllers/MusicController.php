@@ -24,6 +24,13 @@ class MusicController extends Controller
         if ($musics->isEmpty()) {
             return response()->json(['statut' => 'error', 'message' => 'No musics found for this room'], 404);
         } else {
+
+            foreach ($musics as $music) {
+                $playlistIds = \App\Models\PlaylistMusic::where('music_id', $music->id)->pluck('playlist_id');
+                $playlists = \App\Models\Playlist::whereIn('id', $playlistIds)->get();
+                $music->playlists = $playlists;
+            }
+
             // Add user_name attribute to each music
             foreach ($musics as $music) {
                 $music->user_name = User::where('id', $music->user_id)->value('name');
